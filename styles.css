@@ -1,0 +1,53 @@
+/* Valentine-themed shared styles and animations */
+:root{
+  --bg1: #fff7fb;
+  --bg2: #fff0f6;
+  --card: #ffffff;
+  --accent: #ff4d6d;
+  --accent-dark: #c73a52;
+  --text: #2b2b2b;
+  --muted: #7a6b7a;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Segoe UI, system-ui, -apple-system, Roboto, 'Helvetica Neue', Arial;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text)}
+a{color:var(--accent);text-decoration:none}
+.wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
+.card{background:var(--card);border-radius:18px;box-shadow:0 14px 50px rgba(200,30,80,0.08);padding:48px;max-width:1000px;width:100%;text-align:center;position:relative;overflow:hidden}
+.page{opacity:0;transform:scale(0.985);transition:opacity 600ms ease,transform 600ms ease}
+.page.visible{opacity:1;transform:scale(1)}
+h1.title{font-size:2.6rem;margin:0 0 16px;color:var(--accent);animation:fadeInScale 900ms both, pulse 2000ms ease-in-out 900ms infinite}
+@keyframes fadeInScale{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+.subtitle{color:var(--muted);margin-bottom:18px}
+.subtitle{color:var(--muted);margin-bottom:18px}
+input[type=text]{padding:14px 16px;border-radius:12px;border:1px solid #f1d7df;background:rgba(255,245,248,0.95);width:360px;font-size:1.2rem;text-align:center}
+.actions{margin-top:22px;display:flex;gap:16px;justify-content:center;align-items:center}
+.btn{padding:16px 26px;border-radius:14px;border:0;background:linear-gradient(180deg,var(--accent),var(--accent-dark));color:#fff;font-weight:800;cursor:pointer;box-shadow:0 10px 26px rgba(255,77,109,0.20);transition:transform 180ms ease,box-shadow 180ms ease}
+.btn:hover{transform:scale(1.06);box-shadow:0 14px 36px rgba(255,77,109,0.26)}
+.hint{color:#b05b6b;margin-top:10px;height:20px}
+.message{color:#b00020;margin-top:10px;height:20px}
+
+/* Heart styles */
+.hearts-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.heart{position:absolute;font-size:24px;will-change:transform,opacity;filter:drop-shadow(0 10px 20px rgba(200,40,80,0.14))}
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(1);opacity:1}
+  100%{transform:translateY(-380px) scale(1.2);opacity:0}
+}
+
+/* Ask page specific */
+.ask-area{position:relative;height:420px;display:flex;align-items:center;justify-content:center}
+.btn-yes{position:relative;z-index:5;padding:20px 30px;border-radius:999px;display:inline-flex;align-items:center;gap:10px;font-size:1.2rem}
+.btn-no{position:absolute;z-index:6;padding:16px 20px;border-radius:999px;background:#ffedf1;border:1px solid #ffd8e4;color:var(--accent-dark);cursor:pointer}
+
+/* Heartbeat for Yes button */
+@keyframes heartbeat{0%{transform:scale(1)}25%{transform:scale(1.12)}40%{transform:scale(0.98)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
+.yes-beat{animation:heartbeat 1.2s infinite;box-shadow:0 8px 28px rgba(255,77,109,0.18)}
+
+/* Celebration extras */
+.celebrate-large{font-size:3.2rem;color:var(--accent);text-shadow:0 18px 48px rgba(255,77,109,0.18)}
+.confetti-heart{position:absolute;font-size:22px;filter:drop-shadow(0 8px 18px rgba(200,40,80,0.12))}
+
+/* small helpers */
+.muted{color:var(--muted);font-size:0.95rem}
+.days{margin-top:8px;color:#8b3b4b}

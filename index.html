@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Start - Ask Inaya</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Shared JS will handle audio and hearts -->
+  <script defer src="main.js"></script>
+  <style>
+    .card{max-width:560px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card page" id="page-start">
+      <div class="hearts-layer" aria-hidden="true"></div>
+      <h1 class="title">Insert start of relationship 💕</h1>
+      <div class="subtitle">Please enter the date we started (dd.mm.yyyy)</div>
+      <input id="startInput" type="text" placeholder="" autocomplete="off">
+      <div class="actions">
+        <button id="continueBtn" class="btn">Continue ❤️</button>
+      </div>
+      <div class="message" id="msg"></div>
+      
+    </div>
+  </div>
+  <!-- Background music (user will provide unthinkable.mp3 in this folder) -->
+  <audio id="bgm" src="unthinkable.mp3" loop preload="auto"></audio>
+  <script>
+    // Page-specific behavior: validate date and navigate
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const page = document.getElementById('page-start');setTimeout(()=>page.classList.add('visible'),50);
+      const btn = document.getElementById('continueBtn');
+      const input = document.getElementById('startInput');
+      const msg = document.getElementById('msg');
+      btn.addEventListener('click', ()=>{
+        const val = (input.value || '').trim();
+        if(val === '07.11.2024'){
+          // store start date and go to question page
+          localStorage.setItem('relationshipStart','07.11.2024');
+          window.location.href = 'ask.html';
+        } else {
+          msg.textContent = 'Hmm… that doesn\'t feel right 🥺 try again!';
+        }
+      });
+      // Allow pressing Enter
+      input.addEventListener('keyup', (e)=>{ if(e.key === 'Enter') btn.click(); });
+    });
+  </script>
+</body>
+</html>

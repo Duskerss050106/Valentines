@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>YAAAY!!!</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card page" id="page-celebrate">
+      <div class="hearts-layer" aria-hidden="true"></div>
+      <h1 class="celebrate-large">YAAAY!!! 💞 You are my Valentine!!! 💞</h1>
+      <div class="subtitle">This calls for confetti and hearts 🎉</div>
+      <div class="days" id="daysText"></div>
+      <a class="link" href="index.html">Start over</a>
+    </div>
+  </div>
+  <audio id="bgm" src="unthinkable.mp3" loop preload="auto"></audio>
+  <script>
+    // Celebration page: read start date, show days since
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const page = document.getElementById('page-celebrate');setTimeout(()=>page.classList.add('visible'),50);
+      const daysText = document.getElementById('daysText');
+      const raw = localStorage.getItem('relationshipStart');
+      if(raw){
+        // parse dd.mm.yyyy
+        const parts = raw.split('.');
+        if(parts.length===3){
+          const d = new Date(Number(parts[2]), Number(parts[1])-1, Number(parts[0]));
+          const now = new Date();
+          const diff = Math.floor((now - d)/(1000*60*60*24));
+          daysText.textContent = `We've been together for ${diff} day(s)!`;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

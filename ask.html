@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Will you be my Valentine?</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card page" id="page-ask">
+      <div class="hearts-layer" aria-hidden="true"></div>
+      <h1 class="title">Inaya Qaiser, will you be my Valentine? 💖</h1>
+      <div class="ask-area">
+        <button id="yesBtn" class="btn btn-yes yes-beat">Yes 💘</button>
+        <button id="noBtn" class="btn-no">No 💔</button>
+      </div>
+      <div class="muted">Hover the buttons... one of them has a big heartbeat.</div>
+    </div>
+  </div>
+  <audio id="bgm" src="unthinkable.mp3" loop preload="auto"></audio>
+  <script>
+    // Ask page: yes navigates, no moves away
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const page = document.getElementById('page-ask');setTimeout(()=>page.classList.add('visible'),50);
+      const yes = document.getElementById('yesBtn');
+      const no = document.getElementById('noBtn');
+      const card = page;
+
+      // Move the No button to a random position inside the card on hover
+      function moveNo(){
+        const rect = card.getBoundingClientRect();
+        const w = rect.width, h = rect.height;
+        // calculate new positions keeping button inside
+        const x = Math.random() * (w - 120) + 20;
+        const y = Math.random() * (h - 60) + 20;
+        no.style.left = x + 'px';
+        no.style.top = y + 'px';
+      }
+
+      no.addEventListener('mouseenter', moveNo);
+      // also move on mousemove near the button for extra elusiveness
+      no.addEventListener('mousemove', moveNo);
+
+      yes.addEventListener('click', ()=>{
+        // mark accepted and navigate
+        localStorage.setItem('accepted','true');
+        window.location.href = 'celebrate.html';
+      });
+    });
+  </script>
+</body>
+</html>
